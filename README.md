@@ -44,17 +44,17 @@ A comprehensive Kanban board application demonstrating all features of the `@mcp
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Start both server and UI dev mode
-pnpm dev
+npm run dev
 
 # Or start individually
-pnpm dev:server  # Server only
-pnpm dev:ui      # UI dev server only
+npm run dev:server  # Server only
+npm run dev:ui      # UI dev server only
 
 # Build for production
-pnpm build
+npm run build
 ```
 
 The server starts at `http://localhost:3001`.
@@ -141,19 +141,23 @@ On supported platforms (ChatGPT), the Add Task modal includes a file upload opti
 ## Project Structure
 
 ```
-kanban/
+kanban-mcp-example/
+├── api/
+│   └── index.ts           # Vercel serverless function
+├── public/
+│   └── index.html         # Built UI output
 ├── src/
 │   ├── index.ts           # Server with all SDK features
 │   └── ui/
 │       ├── App.tsx        # React app with all hooks
 │       ├── main.tsx       # Entry point with AppsProvider
 │       ├── index.html     # HTML template
-│       ├── styles.css     # Comprehensive styling
-│       └── dist/          # Built UI output
+│       └── styles.css     # Comprehensive styling
 ├── package.json
 ├── tsconfig.json
-├── vite.config.ts
-└── README.md
+├── tsup.config.ts
+├── vercel.json
+└── vite.config.ts
 ```
 
 ## Claude Desktop Configuration
@@ -163,7 +167,7 @@ kanban/
   "mcpServers": {
     "kanban": {
       "command": "npx",
-      "args": ["tsx", "/path/to/examples/kanban/src/index.ts"]
+      "args": ["tsx", "/path/to/kanban-mcp-example/src/index.ts"]
     }
   }
 }
@@ -182,11 +186,26 @@ config: {
 
 ```bash
 # Type checking
-pnpm typecheck
+npm run typecheck
 
 # Build UI
-pnpm build:ui
+npm run build:ui
 
 # Build server
-pnpm build
+npm run build:server
+
+# Build everything
+npm run build
+```
+
+## Deployment
+
+This project is configured for deployment on Vercel:
+
+```bash
+# Deploy preview
+vercel
+
+# Deploy to production
+vercel --prod
 ```
