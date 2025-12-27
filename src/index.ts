@@ -628,7 +628,7 @@ const app = createApp({
       credentials: true,
     },
     // Use MCP protocol for Claude Desktop / MCP Apps
-    protocol: "mcp",
+    protocol: "openai",
     // Enable debug logging and log_debug tool for client-to-server log transport
     debug: {
       logTool: true, // Register log_debug tool for client UIs to send logs
