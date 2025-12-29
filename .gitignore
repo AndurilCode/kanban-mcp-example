@@ -10,3 +10,4 @@ yarn-error.log*
 pnpm-debug.log*
 coverage
 **/public/index.html
+.serena/

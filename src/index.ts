@@ -10,7 +10,7 @@
  * - Event system for observability and analytics
  */
 
-import { createApp, defineTool, type ClientToolsFromCore } from "@mcp-apps-kit/core";
+import { createApp, defineTool, defineUI, type ClientToolsFromCore } from "@mcp-apps-kit/core";
 import { createPlugin } from "@mcp-apps-kit/core";
 import type { Middleware } from "@mcp-apps-kit/core";
 import { z } from "zod";
@@ -567,7 +567,17 @@ const app = createApp({
         ),
         totalTasks: z.number(),
       }),
-      ui: "kanban-board",
+      ui: defineUI({
+        name: "Kanban Board Widget",
+        description: "Interactive Kanban board React app",
+        widgetDescription:
+          "A drag-and-drop Kanban board for task management. Users can create, move, update, and delete tasks across three columns: To Do, In Progress, and Done. Supports file attachments on tasks and provides real-time updates. The board displays task counts per column and allows exporting data.",
+        html: "./public/index.html",
+        prefersBorder: true,
+        csp: {
+          connectDomains: [],
+        },
+      }),
       visibility: "both",
       widgetAccessible: true,
       annotations: {
@@ -599,24 +609,6 @@ const app = createApp({
         };
       },
     }),
-  },
-
-  // ===========================================================================
-  // UI RESOURCES
-  // ===========================================================================
-  ui: {
-    "kanban-board": {
-      name: "Kanban Board Widget",
-      description: "Interactive Kanban board React app",
-      // Widget description helps the model understand what the widget does
-      widgetDescription:
-        "A drag-and-drop Kanban board for task management. Users can create, move, update, and delete tasks across three columns: To Do, In Progress, and Done. Supports file attachments on tasks and provides real-time updates. The board displays task counts per column and allows exporting data.",
-      html: "./public/index.html",
-      prefersBorder: true,
-      csp: {
-        connectDomains: [],
-      },
-    },
   },
 
   // ===========================================================================
